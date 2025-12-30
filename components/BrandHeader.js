@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const LOGO = require('../images/8919fe7a-c921-497c-8cef-2cc185477a93.png');
+const LOGO_URI =
+  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=240&q=80';
 
 export default function BrandHeader({ onBack }) {
   const BackSlot = onBack ? (
@@ -16,7 +17,7 @@ export default function BrandHeader({ onBack }) {
   return (
     <View style={styles.container}>
       {BackSlot}
-      <Image source={LOGO} style={styles.logo} />
+      <Image source={{ uri: LOGO_URI }} style={styles.logo} />
       <View style={styles.backPlaceholder} />
     </View>
   );
