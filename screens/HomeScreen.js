@@ -7,7 +7,7 @@ import StatCard from '../components/StatCard';
 import { useTransactions } from '../context/TransactionsContext';
 
 const LOGO =
-  'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=160&q=60';
+  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=320&q=80';
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(value);
@@ -23,8 +23,10 @@ export default function HomeScreen() {
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 24 }}>
       <View style={styles.header}>
         <View style={styles.logoRow}>
-          <Image source={{ uri: LOGO }} style={styles.logo} />
-          <View>
+          <View style={styles.logoBadge}>
+            <Image source={{ uri: LOGO }} style={styles.logo} />
+          </View>
+          <View style={styles.brandBlock}>
             <Text style={styles.brand}>Preta Maluca</Text>
             <Text style={styles.brandSub}>Bolos e Encantos</Text>
           </View>
@@ -84,29 +86,47 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
   },
   header: {
-    marginTop: 20,
-    marginBottom: 16,
-    gap: 10,
+    marginTop: 28,
+    marginBottom: 18,
+    gap: 12,
   },
   logoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 14,
+  },
+  logoBadge: {
+    width: 82,
+    height: 82,
+    borderRadius: 18,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
   logo: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#f1d88a',
+    width: 64,
+    height: 64,
+    borderRadius: 12,
+    resizeMode: 'contain',
+  },
+  brandBlock: {
+    gap: 4,
   },
   brand: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '800',
     color: '#2c241c',
+    letterSpacing: 0.2,
   },
   brandSub: {
     color: '#6b5c4e',
-    fontSize: 12,
+    fontSize: 13,
+    fontWeight: '600',
   },
   greeting: {
     fontSize: 22,
