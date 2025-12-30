@@ -1,11 +1,45 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useTransactions } from '../context/TransactionsContext';
 
 export default function ProfileScreen() {
+  const { resetData } = useTransactions();
+
+  const handleReset = () => {
+    Alert.alert('Resetar registros', 'Deseja voltar aos dados de exemplo?', [
+      { text: 'Cancelar', style: 'cancel' },
+      { text: 'Sim', onPress: resetData },
+    ]);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Profile Screen</Text>
-      <Text style={styles.subtitle}>Your profile information</Text>
+      <Text style={styles.title}>Configurações</Text>
+      <Text style={styles.subtitle}>Controle o app e os dados salvos localmente</Text>
+
+      <View style={styles.card}>
+        <View style={styles.row}>
+          <Ionicons name="cloud-offline" size={24} color="#7b5336" />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.cardTitle}>Modo offline</Text>
+            <Text style={styles.cardText}>Todos os dados estão apenas no seu dispositivo via AsyncStorage.</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.card}>
+        <View style={styles.row}>
+          <Ionicons name="refresh" size={24} color="#7b5336" />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.cardTitle}>Resetar dados</Text>
+            <Text style={styles.cardText}>Limpe e recarregue os registros de exemplo.</Text>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={handleReset}>
+          <Text style={styles.buttonText}>Resetar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -13,20 +47,54 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    backgroundColor: '#f9eec9',
+    paddingHorizontal: 18,
+    paddingTop: 16,
+    gap: 12,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#2c241c',
   },
   subtitle: {
+    color: '#6b5c4e',
+    fontWeight: '600',
+  },
+  card: {
+    backgroundColor: '#fff7e5',
+    padding: 16,
+    borderRadius: 14,
+    gap: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
+  },
+  row: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
+  cardTitle: {
+    fontWeight: '800',
+    color: '#2c241c',
     fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
+  },
+  cardText: {
+    color: '#6b5c4e',
+    fontWeight: '600',
+  },
+  button: {
+    marginTop: 10,
+    backgroundColor: '#f6c645',
+    borderRadius: 12,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontWeight: '800',
+    color: '#2c241c',
   },
 }); 
