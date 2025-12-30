@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTransactions } from '../context/TransactionsContext';
 import TransactionCard from '../components/TransactionCard';
+import BrandHeader from '../components/BrandHeader';
 
 const formatMonth = (dateString) => {
   const date = new Date(dateString);
@@ -34,13 +34,9 @@ export default function HistoryScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="chevron-back" size={20} color="#2c241c" />
-        </TouchableOpacity>
-        <Text style={styles.title}>Tela de Histórico</Text>
-        <Text style={styles.subtitle}>Acompanhe entradas e saídas</Text>
-      </View>
+      <BrandHeader onBack={() => navigation.navigate('Home')} />
+      <Text style={styles.title}>Tela de Histórico</Text>
+      <Text style={styles.subtitle}>Acompanhe entradas e saídas</Text>
 
       <View style={styles.filters}>
         <View style={styles.chipsRow}>
@@ -97,26 +93,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 14,
   },
-  header: {
-    marginBottom: 10,
-    gap: 6,
-  },
-  backBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 12,
-    backgroundColor: '#f1d88a',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontSize: 22,
     fontWeight: '800',
     color: '#2c241c',
+    textAlign: 'center',
   },
   subtitle: {
     color: '#6b5c4e',
     fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 10,
   },
   filters: {
     marginVertical: 12,

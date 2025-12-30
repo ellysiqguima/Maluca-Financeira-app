@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import StatCard from '../components/StatCard';
 import { useTransactions } from '../context/TransactionsContext';
+import BrandHeader from '../components/BrandHeader';
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(value);
@@ -24,6 +25,7 @@ export default function ReportsScreen() {
 
   return (
     <View style={styles.container}>
+      <BrandHeader />
       <Text style={styles.title}>Resumo de Relatórios</Text>
       <Text style={styles.subtitle}>Veja como o negócio está indo</Text>
 
@@ -66,11 +68,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '800',
     color: '#2c241c',
+    textAlign: 'center',
   },
   subtitle: {
     color: '#6b5c4e',
     marginBottom: 16,
     fontWeight: '600',
+    textAlign: 'center',
   },
   cardRow: {
     flexDirection: 'row',

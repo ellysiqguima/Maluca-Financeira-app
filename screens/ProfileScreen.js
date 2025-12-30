@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTransactions } from '../context/TransactionsContext';
+import BrandHeader from '../components/BrandHeader';
 
 export default function ProfileScreen() {
   const { resetData } = useTransactions();
@@ -15,6 +16,7 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
+      <BrandHeader />
       <Text style={styles.title}>Configurações</Text>
       <Text style={styles.subtitle}>Controle o app e os dados salvos localmente</Text>
 
@@ -56,10 +58,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '800',
     color: '#2c241c',
+    textAlign: 'center',
   },
   subtitle: {
     color: '#6b5c4e',
     fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 8,
   },
   card: {
     backgroundColor: '#fff7e5',

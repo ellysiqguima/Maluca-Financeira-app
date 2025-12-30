@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTransactions } from '../context/TransactionsContext';
+import BrandHeader from '../components/BrandHeader';
 
 const formatDateInput = (value) => {
   const cleaned = value.replace(/[^0-9/]/g, '');
@@ -57,12 +57,8 @@ export default function NewEntryScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 30 }}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="arrow-back" size={22} color="#2c241c" />
-        </TouchableOpacity>
-        <Text style={styles.title}>Novo Registro</Text>
-      </View>
+      <BrandHeader onBack={() => navigation.goBack()} />
+      <Text style={styles.title}>Novo Registro</Text>
 
       <View style={styles.switcher}>
         <TouchableOpacity
@@ -132,22 +128,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9eec9',
     paddingHorizontal: 18,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginTop: 14,
-    marginBottom: 10,
-  },
-  backBtn: {
-    padding: 8,
-    borderRadius: 10,
-    backgroundColor: '#f1d88a',
-  },
   title: {
     fontSize: 22,
     fontWeight: '800',
     color: '#2c241c',
+    textAlign: 'center',
+    marginBottom: 10,
   },
   switcher: {
     flexDirection: 'row',
